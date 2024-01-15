@@ -3,6 +3,7 @@ from tkinter import *
 from PIL import ImageTk, Image
 import requests
 import json
+from tkinter import font
 
 # Switching frames function
 def switch_to_frame(frame):
@@ -118,44 +119,44 @@ root.geometry('1000x700') #Ouput window size
 root.resizable(0,0) #Fixed output window
 
 # Start Frame
-Start_frame = Frame(root, bg='#111D13')
+Start_frame = Frame(root, bg='#93D7FF')
 img = ImageTk.PhotoImage(Image.open("logo.png") )
 # Display the logo image
-label = Label(Start_frame, image=img, bg='#111D13')
+label = Label(Start_frame, image=img, bg='#93D7FF')
 label.place(x=250, y=0)
-Button(Start_frame, text="START", font=("impact", 30), bg='#415D43', fg='white', 
+Button(Start_frame, text="START", font=("Impact", 30), bg='#93D7FF', fg='black', bd=0, 
        command=lambda: switch_to_frame(frame1)).place(x=440, y= 500)
 Start_frame.place(x=0,y=0, width=1000,height=700)
 
 #  frame 1, opening page
-frame1 = Frame(root, bg='#111D13')
-Label(frame1, text="Welcome To World Explorer..",fg='white',bg='#111D13', font=("impact", 40)).place(x=200, y=200)
+frame1 = Frame(root, bg='#93D7FF')
+Label(frame1, text="Welcome To World Explorer..",fg='black',bg='#93D7FF', font=("impact", 40)).place(x=200, y=200)
 Label(frame1, text="World Explorer is an app that helps you know more about the world.",
-      fg='white',bg='#111D13', font=("Monserat", 20)).place(x=100, y=300)
+      fg='black',bg='#93D7FF', font=("Monserat", 20)).place(x=100, y=300)
 Label(frame1, text="Discover, Connect, and Explore with World Explorer:\nYour Gateway to Global Knowledge.",
-      fg='white',bg='#111D13', font=("Monserat", 20)).place(x=200, y=335)
+      fg='black',bg='#93D7FF', font=("Monserat", 20)).place(x=200, y=335)
 Label(frame1, text="Created by: Mark Buyco \n Bathspa University year 2 ",
-      fg='white',bg='#111D13', font=("Monserat", 15)).place(x=10, y=30)
-Button(frame1, text="Discover The World", font=('impact', 30), bg='#415D43', fg='white',
+      fg='black',bg='#93D7FF', font=("Monserat", 15)).place(x=10, y=30)
+Button(frame1, text="Discover The World", font=('impact', 30), bg='#93D7FF', fg='#00227A', bd='0',
        command=lambda: switch_to_frame(frame2)).place(x=330, y= 500)
 frame1.place(x=0,y=0, width=1000,height=700)
 
 # frame 2, tagline page
-frame2 = Frame(root, bg='#111D13')
+frame2 = Frame(root, bg='#93D7FF')
 Label(frame2, text="World Explorer",
-      fg='white',bg='#111D13', font=("impact", 30)).place(x=390, y=30)
-Label(frame2, text="Enter a country:", fg='white', bg='#111D13', 
+      fg='black',bg='#93D7FF', font=("impact", 30)).place(x=390, y=30)
+Label(frame2, text="Enter a country:", fg='black', bg='#93D7FF', 
       font=("impact", 20)).place(x=250, y=100)
 UserSearch = Entry(frame2, width=25, font=("Monserat", 15))
 UserSearch.place(x=450, y=110)
-search_button = Button(frame2, text="Search", command=show_entry, font=("impact", 20), bg='#415D43', fg='white')
-search_button.place(x=750, y=100)
-frame2.place(x=0,y=0, width=1000,height=670)
+search_button = Button(frame2, text="Search", command=show_entry, font=("impact", 20), bg='#93D7FF', fg='black', bd='0')
+search_button.place(x=750, y=95)
+frame2.place(x=0,y=0, width=1000,height=700)
 
 # Nested Frames, isnide frame 2, which is the main app.
 
 # Frame 2a, inside frame 2
-miniframe = Frame(frame2, bg='#415D43')
+miniframe = Frame(frame2, bg='#8EABD1')
 miniframe.place(x=30,y=180, width=940,height=500)
 
 # Frame A, inside miniframe
@@ -173,17 +174,16 @@ FrameC = Frame(miniframe, bg='white', bd='1', relief='ridge')
 Label(FrameC, text="Details will be displayed here:", font=("Monserat", 13), bg='white').place(x=10, y=10)
 result_label = Label(FrameC, font=("Monserat", 13), justify="left", wraplength=300, bg='white')
 result_label.place(x=120, y=30)
-Button(FrameC, text="End", font=('impact', 30), bg='#415D43', fg='white',
-       command=lambda: switch_to_frame(lastframe)).place(x=350, y= 340)
+Button(FrameC, text="End", font=('impact', 30), bg='white', fg='black', bd='0',
+       command=lambda: switch_to_frame(lastframe)).place(x=350, y= 350)
 FrameC.place(x=450,y=20, width=460,height=440)
 
 # Last Frame
-lastframe = Frame(root, bg='#111D13')
-Label(lastframe, text="Thank you for using World Explorer!",fg='white',bg='#111D13', font=("impact", 40)).place(x=120, y=200)
-Button(lastframe, text="Start Over", font=('impact', 30), bg='#415D43', fg='white',
+lastframe = Frame(root, bg='#93D7FF')
+Label(lastframe, text="Thank you for using World Explorer!",fg='black',bg='#93D7FF', font=("impact", 40)).place(x=120, y=200)
+Button(lastframe, text="Start Over", font=('impact', 30), bg='#93D7FF', fg='#00227A', bd=0,
        command=lambda: switch_to_frame(Start_frame)).place(x=400, y= 400)
 lastframe.place(x=0,y=0, width=1000,height=700)
-
 
 
 # Show Start frame initially
