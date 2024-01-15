@@ -3,7 +3,6 @@ from tkinter import *
 from PIL import ImageTk, Image
 import requests
 import json
-from tkinter import font
 
 # Switching frames function
 def switch_to_frame(frame):
@@ -27,22 +26,31 @@ def show_entry():
     for widget in FrameC.winfo_children():
         if isinstance(widget, Label) and widget != result_label: # Hide except 1 button, which is to switch frames
             widget.place_forget()
+    
+    # Custom title case function, I get all the lowercase in the dictionary for the exceptions
+    def custom_title_case(word):
+        exceptions = ["and", "the", "of", "da"]  # Add any other exceptions as needed
+        return word.title() if word.lower() not in exceptions else word
 
     # Getting info from user
-    entered_text = UserSearch.get()#.title() # Get info from the the entry 
+    entered_text = UserSearch.get() # Get info from the the entry
+    formatted_text = ' '.join(custom_title_case(word) for word in entered_text.split())
     for country in data: # Loop to get each wanted info
         if entered_text == country['name']['common']: # If entered text matches a country in the api
             official_name = country['name']['official'] # Getting the data from api and storing in a variables to be used.
             subregion = country.get('subregion', 'Not Available') # A get method, because some country don't have this data.
-            region = country['region']
-            capital = country['capital']
-            continent = country['continents']
-            timezone = country['timezones']
-            weekstart = country['startOfWeek']
+            region = country.get('region', 'Not Available')
+            capital = country.get('capital', '')
+            continent = country.get('continents', 'Not Available')
+            timezone = country.get('timezones', 'Not Available')
+            weekstart = country.get('startOfWeek', 'Not Available')
 
             # Extract currencies information
-            currencies_data = country['currencies']
-            currencies_info = "\n".join([f"{code}: {info['name']} ({info['symbol']})" for code, info in currencies_data.items()])
+            try:
+                currencies_data = country['currencies', 'Not Available']
+                currencies_info = "\n".join([f"{code}: {info['name']} ({info['symbol']})" for code, info in currencies_data.items()])
+            except KeyError as e:
+                currencies_info = "Currency information not available."
 
             # Extract flag information using get function
             flag_info = country.get('flags', {})
