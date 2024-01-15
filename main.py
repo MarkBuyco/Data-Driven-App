@@ -177,6 +177,7 @@ Button(FrameC, text="End", font=('impact', 30), bg='#415D43', fg='white',
        command=lambda: switch_to_frame(lastframe)).place(x=350, y= 340)
 FrameC.place(x=450,y=20, width=460,height=440)
 
+# Last Frame
 lastframe = Frame(root, bg='#111D13')
 Label(lastframe, text="Thank you for using World Explorer!",fg='white',bg='#111D13', font=("impact", 40)).place(x=120, y=200)
 Button(lastframe, text="Start Over", font=('impact', 30), bg='#415D43', fg='white',
